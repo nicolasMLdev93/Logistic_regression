@@ -23,7 +23,6 @@ def show_evaluation():
     for i in range(len(predictions)):
         print(f"El input n° {i} {'es fraudulento' if predictions[i] == 1 else 'no es fraudulento'}")
         print(f"Probabilidad NO FRAUDE: {probabilities[i][0].round(2)} %, FRAUDE: {probabilities[i][1].round(2)} %\n")
-
         
 show_evaluation()
 
