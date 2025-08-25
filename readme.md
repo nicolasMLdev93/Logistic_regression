@@ -11,23 +11,30 @@ El proyecto implementa un modelo de regresión logística utilizando Scikit-lear
 
 ⚡ Instalación y uso: 
 
-1 - Clonar el repo
+1 - Clonar el repo:
+
 git clone https://github.com/nicolasMLdev93/Logistic_regression_Python.git
 
 2 - Crear y activar entorno virtual:
+
 python -m venv .venv
+
 .venv\Scripts\activate
 
 3 - Instalar dependencias:
+
 pip install -r requirements.txt
 
 4 - Entrenar el modelo:
+
 python src/model.py
 
 5 - Predicción de resultados:
+
 python src/evaluate.py
 
 6 - Gráficos:
+
 python reports/reports.py
 
 📈 Curva ROC y AUC:
