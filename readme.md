@@ -15,7 +15,6 @@ El proyecto implementa un modelo de regresión logística utilizando Scikit-lear
 git clone https://github.com/nicolasMLdev93/Logistic_regression_Python.git
 
 2 - Crear y activar entorno virtual:
-# en Windows
 python -m venv .venv
 .venv\Scripts\activate
 
