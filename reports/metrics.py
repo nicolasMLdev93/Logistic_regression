@@ -1,7 +1,9 @@
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import pandas as pd
 import matplotlib.pyplot as plt
-from sklearn.linear_model import LogisticRegression
-from sklearn.metrics import roc_curve, roc_auc_score
+from classes.fraud_class import Fraud_detect
 
 # Dataset limpio
 df = pd.read_csv('../data/clean_data.csv')
@@ -11,21 +13,20 @@ def get_variables(df):
     y = df.iloc[:, -1]    # Variable dependiente
     return x, y
 
-X, Y = get_variables(df)
+X_train, Y_train = get_variables(df)
+
+# Instancio una nueva detección de fraudes
+detect_instance:Fraud_detect = Fraud_detect()
 
 # Entrenar modelo
-clf = LogisticRegression(solver="newton-cholesky", random_state=0)
-clf.fit(X, Y)
-
-# Probabilidades clase positiva
-y_prob = clf.predict_proba(X)[:, 1]
+detect_instance.train_model(X_train,Y_train)
 
 # Calcular AUC : valor numérico que mide el área bajo la ROC (entre 0 y 1)
-auc = roc_auc_score(Y, y_prob) * 100  # convertir a porcentaje
-print(f"AUC: {auc:.2f} %")
+auc:float = detect_instance.get_auc_score(X_train,Y_train)
+print(f"AUC: {auc:.2f}")
 
 # Calcular curva ROC
-fpr, tpr, thresholds = roc_curve(Y, y_prob)
+fpr, tpr, thresholds = detect_instance.get_roc_curve(X_train,Y_train)
 
 # Graficar curva ROC
 # ROC = Receiver Operating Characteristic: es una curva que muestra el desempeño de un modelo de
@@ -39,5 +40,5 @@ plt.xlabel('Falsos positivos')
 plt.ylabel('Verdaderos positivos')
 plt.title('Curva ROC - Regresión Logística')
 plt.grid()
-plt.savefig('../reports/roc_auc.png')  # guardar imagen en reports
+plt.savefig('../reports/roc_auc.png') 
 plt.show()

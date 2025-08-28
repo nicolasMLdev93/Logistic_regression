@@ -1,9 +1,9 @@
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import roc_curve, roc_auc_score
 
-class Fraud_detec:
+class Fraud_detect:
     def __init__(self):
-        self.model = LogisticRegression()
+        self.model = LogisticRegression(solver="newton-cholesky", random_state=0)
     def train_model(self,x_train,y_train):
         # Método para entrenar el modelo de Regresión Logística
         self.model.fit(x_train,y_train)
