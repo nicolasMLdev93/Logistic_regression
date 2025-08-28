@@ -25,17 +25,13 @@ python -m venv .venv
 
 pip install -r requirements.txt
 
-4 - Entrenar el modelo:
+4 - Entrenamiento / Predicción de resultados:
 
-python src/model.py
+python src/main.py
 
-5 - Predicción de resultados:
+5 - Gráficos:
 
-python src/evaluate.py
-
-6 - Gráficos:
-
-python reports/reports.py
+python reports/metrics.py
 
 📈 Curva ROC y AUC:
 
